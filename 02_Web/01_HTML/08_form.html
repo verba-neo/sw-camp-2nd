@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+<body>
+    <h1>Form</h1>
+
+    <!-- 양식 -->
+    <!-- method: GET -->
+    <!-- method: POST -->
+
+    <form action="URL(아래 데이터를 제출할 목적지)" method="GET/POST">
+
+        <div>
+            <!-- input / label: 인라인 -->
+            <label for="username">username:</label>
+            <input type="text" id="username" required minlength="4" maxlength="20">
+        </div>
+        <div>
+            <label for="password">password:</label>
+            <input type="password" id="password">
+        </div>
+        <div>
+            <label for="my-email">email:</label>
+            <input type="email" id="my-email" placeholder="email은 @를 포함합니다.">
+        </div>
+        <div>
+            <label for="age">age:</label>
+            <input type="number" id="age" value="20" min="14" max="100">
+        </div>
+        <div>
+            <label for="bio">자기소개:</label>
+            <textarea id="bio" cols="30" rows="10"></textarea>
+        </div>
+        <div>
+            <input type="submit">
+        </div>
+
+    </form>
+</body>
+</html>
