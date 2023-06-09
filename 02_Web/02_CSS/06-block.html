@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .div1 {
+            background-color: red;
+            width: 20%;
+            display: inline-block;
+            padding: 1%;
+        }
+        .div2 {
+            background-color: blue;
+            width: 20%;
+            display: inline-block;
+            padding: 1%;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        Block => 박스(면)
+        1. 욕심이 많아서, 우측 남는자리에 아무도 허락하지 않음
+        2. 기본적으로 height는 content의 세로와 동일하게 구성됨
+     -->
+     <div class="outer">
+        <div class="div1">red</div>
+        <div class="div2">blue</div>
+
+        <div class="div1">red</div>
+        <div class="div2">blue</div>
+     </div>
+</body>
+</html>

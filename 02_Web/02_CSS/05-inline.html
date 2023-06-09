@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .bold-red {
+            font-weight: bold;
+            color: red;
+        }
+
+        .test {
+            /* 의미 없음 */
+            margin: 10px;
+
+        }
+        div {
+            line-height: 2rem;
+            /* text-align : center는 바깥 block 요소에게 줘야 내부 inline 요소가 정렬됨! */
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!--
+        inline => 선
+        1. 선 끼리는 옆에 붙을 수 있음. 화면 가로폭 끝에 도달할 때까지 계속 이어짐
+    -->
+    just <span class="bold-red">text</span> inline
+
+    <img class="thumbnail" src="http://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/dog.png" alt="dog">
+
+
+    <a href="https://google.com">google</a>
+
+    <input type="text"><button>gogo</button>
+
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+
+
+    <div>
+        <span class="test">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum sunt, tempore reprehenderit
+            itaque adipisci quis ratione eum est vel, praesentium aliquid illum impedit libero fuga voluptate veritatis?
+            Dolorum, quidem praesentium.</span>
+    </div>
+
+</body>
+
+</html>
