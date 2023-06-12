@@ -36,8 +36,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'first_app',  # 출생신고
+    
+    # 출생신고
+    'first_app', 
+    'util',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +57,8 @@ ROOT_URLCONF = 'intro.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],  # V
+        # django는 자동으로 INSTALLED_APPS 내부의 templates 폴더에서 html 파일을 찾음
+        'DIRS': [BASE_DIR / 'templates'],  # 추가로 수동 탐색할 폴더를 등록하는 곳
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
