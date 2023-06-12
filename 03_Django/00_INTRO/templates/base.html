@@ -7,9 +7,28 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Intro Project</title>
+  <link rel="stylesheet" href="???">
 </head>
 <body>
-  {% block content %}
-  {% endblock %}
+  <nav>
+    <ul>
+      <li>
+        <a href="/first/home/">Home</a>
+      </li>
+      <li>
+        <a href="/util/lotto/">Lotto</a>
+      </li>
+      <li>
+        <a href="/util/kospi/">KOSPI</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    {% block content %}
+    {% endblock %}
+  </div>
+
+  <script></script>
 </body>
 </html>

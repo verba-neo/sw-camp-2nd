@@ -4,4 +4,12 @@
 
 <h1>로또</h1>
 
+<ul>
+  {% for num in lucky_numbers %}
+
+  <li>{{ num }}</li>
+
+  {% endfor %}
+</ul>
+
 {% endblock content %}
