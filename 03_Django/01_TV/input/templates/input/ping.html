@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Ping.html</h1>
+
+<form action="/input/pong/" method="POST">
+  {% csrf_token %}
+  <p>
+    <label for="username">username:</label>
+    <!-- form 내부 input 태그는 엔터시 자동 submit -->
+    <input type="text" id="username" name="username">
+  </p>
+  <p>
+    <label for="password">password:</label>
+    <input type="password" id="password" name="password">
+  </p>
+  <p>
+    <!-- form 내부 button 태그는 자동 submit -->
+    <button>얍!</button>
+  </p>
+</form>
+
+{% endblock content %}
