@@ -1,0 +1,17 @@
+<!-- index.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+
+<ul>
+  {% for article in articles %}
+  <li>
+    <a href="/board/{{ article.pk }}/">
+      {{ article.title }}
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+
+
+{% endblock content %}
