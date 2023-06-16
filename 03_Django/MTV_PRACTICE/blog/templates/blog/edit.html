@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="{% url 'blog:update' posting.pk %}" method="POST">
+  {% csrf_token %}
+  <div class="my-3">
+    <label for="title" class="form-label">Title</label>
+    <input type="text" class="form-control" id="title" name="title" value="{{ posting.title }}">
+  </div>
+  <div class="mb-3">
+    <label for="rank" class="form-label">Rank</label>
+    <input type="number" class="form-control" id="rank" name="rank" value="{{ posting.rank }}">
+  </div>
+  <div class="mb-3">
+    <label for="content" class="form-label">Content</label>
+    <textarea class="form-control" id="content" rows="10" name="content">{{ posting.content }}</textarea>
+  </div>
+  <div class="mb-3">
+    <button class="btn btn-primary">Go</button>
+  </div>
+</form>
+{% endblock content %}

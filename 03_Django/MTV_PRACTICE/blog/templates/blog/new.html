@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="{% url 'blog:create' %}" method="POST">
+  {% csrf_token %}
+  <div class="my-3">
+    <label for="title" class="form-label">Title</label>
+    <input type="text" class="form-control" id="title" name="title">
+  </div>
+  <div class="mb-3">
+    <label for="rank" class="form-label">Rank</label>
+    <input type="number" class="form-control" id="rank" name="rank">
+  </div>
+  <div class="mb-3">
+    <label for="content" class="form-label">Content</label>
+    <textarea class="form-control" id="content" rows="10" name="content"></textarea>
+  </div>
+  <div class="mb-3">
+    <button class="btn btn-primary">Go</button>
+  </div>
+</form>
+{% endblock content %}
