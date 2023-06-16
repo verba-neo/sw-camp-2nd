@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 
 from .models import Article
 
+
 # 게시글 작성용 HTML 제공
 def new(request):    
     return render(request, 'board/new.html')
@@ -13,7 +14,7 @@ def create(request):
     article.title = request.POST['title']
     article.content = request.POST['content']
     article.save()
-    return redirect(f'/board/{article.pk}/')
+    return redirect('board:detail', article.pk)
 
 
 # 전체 게시글 조회
@@ -47,7 +48,7 @@ def update(request, pk):
     article.title = request.POST['title']
     article.content = request.POST['content']
     article.save()
-    return redirect(f'/board/{article.pk}/')
+    return redirect('board:detail', article.pk)
 
 
 # 단일 게시글 삭제
@@ -55,6 +56,6 @@ def delete(request, pk):
     if request.method == 'POST':
         article = Article.objects.get(pk=pk)
         article.delete()
-    return redirect('/board/')
+    return redirect('board:index')
 
 

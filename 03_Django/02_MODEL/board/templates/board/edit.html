@@ -5,7 +5,7 @@
 
 <h1>Edit Article</h1>
 
-<form action="/board/{{ article.pk }}/update/" method="POST">
+<form action="{% url 'board:update' article.pk %}" method="POST">
   {% csrf_token %}
   <div>
     <label for="title">제목:</label>
