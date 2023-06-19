@@ -37,7 +37,6 @@ def detail(request, pk):
 def edit(request, pk):
     article = Article.objects.get(pk=pk)
     return render(request, 'board/edit.html', {
-        'pk': pk,
         'article': article,
     })
 

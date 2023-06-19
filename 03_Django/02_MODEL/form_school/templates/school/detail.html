@@ -1,0 +1,29 @@
+<h1>{{ student.name }}</h1>
+
+<p>{{ student.phone }}</p>
+
+<p>{{ student.email }}</p>
+
+<p>{{ student.address }}</p>
+
+<p>{{ student.age }}</p>
+
+<p>{{ student.major }}</p>
+
+<p>{{ student.year }}</p>
+
+<p>{{ student.bio }}</p>
+
+<div>
+  <a href="{% url 'school:update' student.pk %}">
+    <button>Edit</button>
+  </a>
+</div>
+
+<div>
+  <form action="#" method="POST">
+    {% csrf_token %}
+    <button>Delete</button>
+  </form>
+</div>
+

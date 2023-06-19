@@ -32,6 +32,7 @@ def create(request):
 """
 def create(request):
     if request.method == 'GET':
+        # 새로운 빈 form
         form = StudentForm()
 
     elif request.method == 'POST':
@@ -40,18 +41,74 @@ def create(request):
             student = form.save()
             return redirect('school:detail', student.pk)
     
-    return render(request, 'school/new.html', {
+    return render(request, 'school/form.html', {
         'form': form,
     })
 
 
 def index(request):
-    pass
+    # 단순 전부 => id 오름차순
+    # students = Student.objects.all()
+    # 나이 오름차순
+    # students = Student.objects.order_by('age')
+    # id(pk) 내림차순
+    students = Student.objects.order_by('-pk')
+    return render(request, 'school/index.html', {
+        'students': students,
+    })
 
 
-def detail():
-    pass
+def detail(request, student_pk):
+    student = Student.objects.get(pk=student_pk)
+    return render(request, 'school/detail.html', {
+        'student': student,
+    })
 
 
-def delete():
-    pass
+"""
+def update(request, student_pk):
+    student = Student.objects.get(pk=student_pk)
+
+    if request.method == 'GET':
+        # 기존 레코드의 내용을 담은 form
+        form = StudentForm(instance=student)
+        # 사용자에게 렌더
+        return render(request, 'school/edit.html', {
+            'form': form,
+        })
+
+    elif request.method == 'POST':
+        # 기존 레코드와 사용자가 넘긴 정보를 함께 담은 form
+        form = StudentForm(request.POST, instance=student)
+        # form 이(사용자 입력 데이터가) 유효하다면,
+        if form.is_valid():
+            # 레코드 갱신 저장
+            student = form.save()
+            return redirect('school:detail', student.pk)
+        # 사용자 입력 데이터가 유효하지 않다면,
+        else:
+            return render(request, 'school/edit.html', {
+                'form': form,
+            })
+"""
+def update(request, student_pk):
+    student = Student.objects.get(pk=student_pk)
+    if request.method == 'GET':
+        form = StudentForm(instance=student)
+        
+    elif request.method == 'POST':
+        form = StudentForm(request.POST, instance=student)
+        if form.is_valid():
+            student = form.save()
+            return redirect('school:detail', student.pk)
+        
+    return render(request, 'school/form.html', {
+        'form': form,
+    })
+
+
+def delete(request, student_pk):
+    if request.method == 'POST':
+        student = Student.objects.get(pk=student_pk)
+        student.delete()
+    return redirect('school:index')
