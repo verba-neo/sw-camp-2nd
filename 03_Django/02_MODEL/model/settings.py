@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # local apps
     'orm_test',
     'board',
+    'form_school',
 ]
 
 MIDDLEWARE = [
