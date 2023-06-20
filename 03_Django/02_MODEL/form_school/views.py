@@ -36,11 +36,14 @@ def create(request):
         form = StudentForm()
 
     elif request.method == 'POST':
+        # 사용자 입력데이터를 담은 form
         form = StudentForm(request.POST)
+        # 검증
         if form.is_valid():
+            # 성공 => 저장
             student = form.save()
             return redirect('school:detail', student.pk)
-    
+            # 실패 => 아래 코드 실행
     return render(request, 'school/form.html', {
         'form': form,
     })
