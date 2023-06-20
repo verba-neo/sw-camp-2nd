@@ -6,17 +6,7 @@
   <title>Document</title>
 </head>
 <body>
-
-  <nav>
-    <ul>
-      <li>
-        <a href="{% url 'board:article_index' %}">Home</a>
-      </li>
-      <li>
-        <a href="{% url 'board:create_article' %}">New</a>
-      </li>
-    </ul>
-  </nav>
+  {% include 'navbar.html' %}
 
   {% block content %}{% endblock content %}
 </body>
