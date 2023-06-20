@@ -34,9 +34,26 @@ def article_detail(request, article_pk):
 
 
 def update_article(request, article_pk):
-    pass
+    article = Article.objects.get(pk=article_pk)
+    
+    if request.method == 'GET':
+        form = ArticleForm(instance=article)
+    
+    elif request.method == 'POST':
+        form = ArticleForm(request.POST, instance=article)
+        if form.is_valid():
+            article = form.save()
+            return redirect('board:article_detail', article.pk)
+
+    return render(request, 'board/form.html', {
+        'form': form,
+    })
 
 
 def delete_article(request, article_pk):
-    pass
+    if request.method == 'POST':
+        article = Article.objects.get(pk=article_pk)
+        article.delete()
+    return redirect('board:article_index')
+
 
