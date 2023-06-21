@@ -9,5 +9,19 @@
 
 {% include 'board/detail_ui.html' %}
 
+<hr>
+
+<ul>
+  {% for comment in comments %}
+  <li>
+    {{ comment.content }}
+    <form action="{% url 'board:delete_comment' article.pk comment.pk %}" method="POST">
+      {% csrf_token %}
+      <button>🗑</button>
+    </form>
+  </li>
+  {% endfor %}
+</ul>
+
 
 {% endblock content %}

@@ -16,7 +16,10 @@ class Comment(models.Model):
 
 
 
+# 이 파일이 직접 실행 되었을 때만 실행할 코드
+# 직접 실행 => $ python board/models.py
 if __name__ == '__main__':
+    print('--------------- This is board model ---------------')
     a1 = Article.objects.create(title='저녁메뉴', content='추천받는다')
     a2 = Article.objects.create(title='끝말잇기', content='텀블러')
 
