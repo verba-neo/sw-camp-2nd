@@ -10,3 +10,7 @@ class Student(models.Model):
     major   = models.CharField(max_length=100)
     year    = models.DateField()
     bio     = models.TextField()
+
+
+class Reply(models.Model):
+    pass

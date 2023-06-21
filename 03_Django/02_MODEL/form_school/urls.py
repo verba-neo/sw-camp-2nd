@@ -15,4 +15,8 @@ urlpatterns = [
     # /school/1/delete/
     path('<int:student_pk>/delete/', views.delete, name='delete'),
 
+    # /school/1/replies/create/
+    path('<int:student_pk>/replies/create/', views.create_reply, name='create_reply'),
+    # /school/1/replies/1/delete/
+    path('<int:student_pk>/replies/<int:reply_pk>/delete/', views.delete_reply, name='delete_reply'),
 ]

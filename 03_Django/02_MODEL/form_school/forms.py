@@ -11,3 +11,7 @@ class StudentForm(forms.ModelForm):
     class Meta:
         model = Student
         fields = '__all__'
+
+
+class ReplyForm(forms.ModelForm):
+    pass

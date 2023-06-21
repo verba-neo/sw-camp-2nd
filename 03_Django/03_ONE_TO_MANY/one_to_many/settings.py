@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django_extensions',
     # My apps
     'board',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -108,7 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko-kr'
 
 TIME_ZONE = 'UTC'
 
@@ -126,3 +127,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# 우리 프로젝트 총괄 회원관리 모델은 'accounts' app의 모델 User 입니다.
+AUTH_USER_MODEL = 'accounts.User'

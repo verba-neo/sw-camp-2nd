@@ -29,4 +29,7 @@ class CommentForm(forms.ModelForm):
 
     class Meta:
         model = Comment
-        fields = ('content', )
+        # 아래 두개중 택 1
+        # fields = ('content', )
+        # all 에서 빼는게 기본값
+        exclude = ('article',) 
