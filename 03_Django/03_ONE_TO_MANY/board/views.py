@@ -44,10 +44,12 @@ def article_detail(request, article_pk):
     """
     article = get_object_or_404(Article, pk=article_pk)
     comments = article.comment_set.all()
+    form = CommentForm()
 
     return render(request, 'board/detail.html', {
         'article': article,
         'comments': comments,
+        'form': form,
     })
 
 
@@ -76,13 +78,15 @@ def delete_article(request, article_pk):
     return redirect('board:article_index')
 
 
+@require_POST
 def create_comment(request, article_pk):
     article = get_object_or_404(Article, pk=article_pk)
     form = CommentForm(request.POST)
     if form.is_valid():
-        form.save()
-        return redirect('')
-
+        comment = form.save(commit=False)  # 저장 멈춰!
+        comment.article = article
+        comment.save()
+        return redirect('board:article_detail', article.pk)
 
 
 @require_POST

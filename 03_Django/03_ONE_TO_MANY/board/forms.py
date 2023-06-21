@@ -22,11 +22,11 @@ class ArticleForm(forms.ModelForm):
 
 class CommentForm(forms.ModelForm):
 
-    conent = forms.CharField(
+    content = forms.CharField(
         min_length=2,
         max_length=200,
     )
 
     class Meta:
         model = Comment
-        fields = '__all__'
+        fields = ('content', )

@@ -1,0 +1,24 @@
+<!-- detail_comment_ui.html -->
+
+<form action="{% url 'board:create_comment' article.pk %}" method="POST">
+  {% csrf_token %}
+  {{ form }}
+  <button>작성</button>
+</form>
+
+<hr>
+
+<ul>
+  {% for comment in comments %}
+  <li>
+    {{ comment.content }}
+    <form 
+      action="{% url 'board:delete_comment' article.pk comment.pk %}" 
+      method="POST"
+      style="display: inline-block;">
+      {% csrf_token %}
+      <button>🗑</button>
+    </form>
+  </li>
+  {% endfor %}
+</ul>
