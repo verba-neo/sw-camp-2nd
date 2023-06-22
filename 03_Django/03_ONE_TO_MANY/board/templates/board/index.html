@@ -7,6 +7,7 @@
 <ul>
   {% for article in articles %}
   <li>
+    {{ article.user.username }} >>
     <a href="{% url 'board:article_detail' article.pk %}">
       {{ article.title }}
     </a>

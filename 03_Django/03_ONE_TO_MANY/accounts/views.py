@@ -33,7 +33,7 @@ def login(request):
         if form.is_valid():
             user = form.get_user()
             auth_login(request, user)
-            return redirect('home')
+            return redirect(request.GET.get('next') or 'home')
     
     return render(request, 'accounts/login.html', {
         'form': form,

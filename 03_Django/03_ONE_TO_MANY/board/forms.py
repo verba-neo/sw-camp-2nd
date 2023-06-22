@@ -17,7 +17,8 @@ class ArticleForm(forms.ModelForm):
     
     class Meta:
         model = Article
-        fields = '__all__'
+        # fields = ('title', 'content')
+        exclude = ('user', )
 
 
 class CommentForm(forms.ModelForm):
@@ -30,6 +31,6 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         # 아래 두개중 택 1
-        # fields = ('content', )
+        fields = ('content', )
         # all 에서 빼는게 기본값
-        exclude = ('article',) 
+        # exclude = ('article', 'user',) 

@@ -1,17 +1,21 @@
 <!-- detail_comment_ui.html -->
 
+{% if user.is_authenticated %}
 <form action="{% url 'board:create_comment' article.pk %}" method="POST">
   {% csrf_token %}
   {{ form }}
   <button>작성</button>
 </form>
+{% endif %}
 
 <hr>
 
 <ul>
   {% for comment in comments %}
   <li>
-    {{ comment.content }}
+    {{ comment.user.username }} > {{ comment.content }}
+    
+    {% if user == comment.user %}
     <form 
       action="{% url 'board:delete_comment' article.pk comment.pk %}" 
       method="POST"
@@ -19,6 +23,8 @@
       {% csrf_token %}
       <button>🗑</button>
     </form>
+    {% endif %}
+
   </li>
   {% endfor %}
 </ul>

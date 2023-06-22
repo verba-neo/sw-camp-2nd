@@ -2,10 +2,24 @@
 <nav>
   <ul>
     <li>
-      <a href="{% url 'board:article_index' %}">Home</a>
+      <a href="{% url 'home' %}">Home</a> {{ user }}
     </li>
+
+    {% if user.is_authenticated %}
     <li>
       <a href="{% url 'board:create_article' %}">New</a>
     </li>
+    <li>
+      <a href="{% url 'accounts:logout' %}">Logout</a>
+    </li>
+    {% else %}
+    <li>
+      <a href="{% url 'accounts:signup' %}">Signup</a>
+    </li>
+    <li>
+      <a href="{% url 'accounts:login' %}">Login</a>
+    </li>
+    {% endif %}
+
   </ul>
 </nav>

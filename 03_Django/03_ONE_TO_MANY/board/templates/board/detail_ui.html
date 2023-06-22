@@ -1,5 +1,5 @@
 <!-- detail_ui.html -->
-
+{% if user == article.user %}
 <div style="display: inline-block;">
   <a href="{% url 'board:update_article' article.pk %}">
     <button>수정</button>
@@ -12,3 +12,5 @@
     <button onclick="return confirm('삭제?')">삭제</button>
   </form>
 </div>
+{% endif %}
+
