@@ -1,9 +1,15 @@
 from django.db import models
+from django.conf import settings
 
+# User 클래스를 사용할 경우.
+# 1. 모델간 관계설정시에는 settings.AUTH_USER_MODEL 사용
+# 2. 그 외(form 생성등)에는 get_user_model() 함수 사용
 
 class Article(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    
     title = models.CharField(max_length=200)
-    content = models.TextField(default='THIS IS DEFAULT CONTENT')
+    content = models.TextField()
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -13,9 +19,10 @@ class Article(models.Model):
 
 
 class Comment(models.Model):
-    content = models.CharField(max_length=200)
-    #                   FK      관계모델, 게시글 삭제시 => 댓글 모두 삭제
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    content = models.CharField(max_length=200)
 
 
 
