@@ -1,6 +1,10 @@
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_http_methods
 
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login as auth_login, logout as auth_logout
+
+
 from .forms import CustomUserCreationForm
 
 
@@ -12,16 +16,30 @@ def signup(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            return redirect('board:article_index')
+            auth_login(request, user)
+            return redirect('home')
     
     return render(request, 'accounts/signup.html', {
         'form': form,
     })
 
 
+@require_http_methods(['GET', 'POST'])
 def login(request):
-    pass
+    if request.method == 'GET':
+        form = AuthenticationForm()
+    else:                       # request.POST 만 넣으면 안됨!
+        form = AuthenticationForm(request, request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            auth_login(request, user)
+            return redirect('home')
+    
+    return render(request, 'accounts/login.html', {
+        'form': form,
+    })
 
 
 def logout(request):
-    pass
+    auth_logout(request)
+    return redirect('home')
