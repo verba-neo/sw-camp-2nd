@@ -10,10 +10,13 @@ class Doctor(models.Model):
 
 class Patient(models.Model):
     name = models.CharField(max_length=100)
+    # Patient 객체 => doctors 로 접근
     doctors = models.ManyToManyField(
         Doctor,
         through='Reservation',
-        through_fields=('patient', 'doctor',)
+        through_fields=('patient', 'doctor'),
+        # Doctor 객체 => 역참조 기본값 _set => 수정
+        related_name = 'patients',
     )
 
     def __str__(self):
@@ -21,8 +24,9 @@ class Patient(models.Model):
     
 
 class Reservation(models.Model):
-    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
-    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    #                          Doctor 입장에서 Reservation 역참조 => d.reservations.all()
+    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE, related_name='reservations')
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name='reservations')
     date = models.DateField()
 
 
@@ -47,9 +51,39 @@ if __name__ == '__main__':
     # 1번 환자의 모든 예약 의사
     p1.doctors.all() 
     # 1번 환자의 모든 예약
-    p1.reservation_set.all()
+    p1.reservations.all()
 
     # 1번 의사의 모든 예약 환자
-    d1.patient_set.all()
+    d1.patients.all()
     # 1번 의사의 모든 예약
-    d1.reservation_set.all()
+    d1.reservations.all()
+
+
+    # related_name 옵션 사용하는 이유
+    class User(models.Model):
+        name = models.CharField(max_length=100)
+
+
+    class Article(models.Model):
+        title = models.CharField(max_length=100)
+        content = models.TextField()
+
+        # 작가
+        author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='write_articles')
+        # 편집자
+        editor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='edit_articles')
+        # 번역가
+        translator = models.ForeignKey(User, on_delete=models.CASCADE, related_name='translate_articles')
+        # 검수
+        inspector = models.ForeignKey(User, on_delete=models.CASCADE, related_name='inspect_articles')
+
+    u = User.objects.first()
+    
+    # 작성한 글
+    u.write_articles.all()
+    # 편집한 글
+    u.edit_articles.all()
+    # 번역한 글
+    u.translate_articles.all()
+    # 검수한 글
+    u.inspect_articles.all()
