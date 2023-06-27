@@ -8,6 +8,7 @@ from .forms import CustomUserCreationForm
 
 User = get_user_model()
 
+
 @require_http_methods(['GET', 'POST'])
 def signup(request):
     if request.method == 'GET':
@@ -47,5 +48,8 @@ def logout(request):
 
 @require_safe
 def profile(request, username):
-    user = get_object_or_404(User, username=username)
-    pass
+    profile_user = get_object_or_404(User, username=username)
+    
+    return render(request, 'accounts/profile.html', {
+        'profile_user': profile_user,
+    })

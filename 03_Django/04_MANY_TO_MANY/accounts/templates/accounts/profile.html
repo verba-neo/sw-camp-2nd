@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>{{ profile_user.username }} 의 프로필 </h1>
+
+<h2>작성글</h2>
+<ul>
+  {% for feed in profile_user.feeds.all %}
+    <li>
+      <a href="{% url 'board:feed_detail' feed.pk %}">
+        {{ feed.title }}
+      </a>
+    </li>
+  {% endfor %}
+</ul>
+
+<hr>
+
+<h2>좋아요 한 글</h2>
+<ul>
+  
+</ul>
+
+<hr>
+
+<h2>댓글 모음</h2>
+<ul>
+
+</ul>
+
+{% endblock content %}
