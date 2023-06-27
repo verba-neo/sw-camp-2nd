@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>{{ feed.title }}</h1>
+
+<h2>by - {{ feed.author.username }}</h2>
+
+<p>{{ feed.content | linebreaksbr }}</p>
+
+<!-- 수정 삭제 버튼-->
+{% include 'board/detail_ui.html' %}
+
+
+<!-- 댓글 UI -->
+{% include 'board/detail_reaction_ui.html' %}
+
+
+{% endblock content %}

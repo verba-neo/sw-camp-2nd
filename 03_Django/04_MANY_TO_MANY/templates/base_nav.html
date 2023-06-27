@@ -1,0 +1,28 @@
+<!-- base_nav.html -->
+<nav>
+  <ul>
+    <li>
+      <a href="{% url 'home' %}">Home</a>
+    </li>
+
+    {% if user.is_authenticated %}
+    <li>
+      <a href="{% url 'board:create_feed' %}">New</a>
+    </li>
+    <li>
+      <a href="{% url 'accounts:profile' user %}">{{ user }}'s profile</a>
+    </li>
+    <li>
+      <a href="{% url 'accounts:logout' %}">Logout</a>
+    </li>
+    {% else %}
+    <li>
+      <a href="{% url 'accounts:signup' %}">Signup</a>
+    </li>
+    <li>
+      <a href="{% url 'accounts:login' %}">Login</a>
+    </li>
+    {% endif %}
+
+  </ul>
+</nav>

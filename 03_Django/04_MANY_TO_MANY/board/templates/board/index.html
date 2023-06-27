@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Articles</h1>
+
+<ul>
+  {% for feed in feeds %}
+  <li>
+    {{ feed.author.username }} >>
+    <a href="{% url 'board:feed_detail' feed.pk %}">
+      {{ feed.title }}
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+
+{% endblock content %}

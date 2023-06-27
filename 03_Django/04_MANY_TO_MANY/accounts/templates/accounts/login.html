@@ -1,0 +1,16 @@
+<!-- accounts/login.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form method="POST">
+  {% csrf_token %}
+  
+  {{ form.as_p }}
+  
+  <div>
+    <button>로그인</button>
+  </div>
+</form>
+
+{% endblock content %}

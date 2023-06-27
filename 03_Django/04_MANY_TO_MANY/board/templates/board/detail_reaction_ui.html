@@ -1,0 +1,32 @@
+<!-- detail_reaction_ui.html -->
+
+{% if user.is_authenticated %}
+<p>
+  <form action="{% url 'board:create_reaction' feed.pk %}" method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <button>작성</button>
+  </form>
+</p>
+{% endif %}
+
+<hr>
+
+<ul>
+  {% for reaction in reactions %}
+  <li>
+    {{ reaction.author.username }} > {{ reaction.content }}
+    
+    {% if user == reaction.author %}
+    <form 
+      action="{% url 'board:delete_reaction' feed.pk reaction.pk %}" 
+      method="POST"
+      style="display: inline-block;">
+      {% csrf_token %}
+      <button>🗑</button>
+    </form>
+    {% endif %}
+
+  </li>
+  {% endfor %}
+</ul>
