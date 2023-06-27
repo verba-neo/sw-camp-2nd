@@ -25,6 +25,12 @@ class Reaction(models.Model):
 """
 u1 = User.objects.get(pk=1)
 
+u1.like_feeds.add(f1)
+f1.like_users.add(u1)
+
+u1.like_feeds.remove(f1)
+f1.like_users.remove(u1)
+
 # u1이 작성한 피드들
 u1.feeds.all()
 

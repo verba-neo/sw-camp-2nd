@@ -10,7 +10,7 @@
     {{ feed.author.username }} >>
     <a href="{% url 'board:feed_detail' feed.pk %}">
       {{ feed.title }}
-    </a>
+    </a> ({{ feed.reactions.count }})
   </li>
   {% endfor %}
 </ul>

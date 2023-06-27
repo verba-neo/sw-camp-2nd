@@ -103,3 +103,14 @@ def delete_reaction(request, feed_pk, reaction_pk):
 
     reaction.delete()
     return redirect('board:feed_detail', feed.pk)
+
+
+@login_required
+@require_POST
+def like_feed(request, feed_pk):
+    feed = get_object_or_404(Feed, pk=feed_pk)
+    user = request.user
+    
+    feed.like_users.add(user)
+
+    return redirect('board:feed_detail', feed.pk)

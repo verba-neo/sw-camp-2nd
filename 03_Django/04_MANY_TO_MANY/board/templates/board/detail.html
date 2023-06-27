@@ -2,15 +2,25 @@
 
 {% block content %}
 
-<h1>{{ feed.title }}</h1>
+<h1>{{ feed.title }}  [+{{ feed.like_users.count }}]</h1>
 
 <h2>by - {{ feed.author.username }}</h2>
 
 <p>{{ feed.content | linebreaksbr }}</p>
 
-<!-- 수정 삭제 버튼-->
+<!-- 수정 삭제 좋아요 버튼-->
 {% include 'board/detail_ui.html' %}
 
+{% if user.is_authenticated %}
+<div style="display: inline-block;">
+  <form action="{% url 'board:like_feed' feed.pk %}" method="POST">
+    {% csrf_token %}
+  
+    <button>+1</button>
+  
+  </form>
+</div>
+{% endif %}
 
 <!-- 댓글 UI -->
 {% include 'board/detail_reaction_ui.html' %}

@@ -20,4 +20,7 @@ urlpatterns = [
     path('<int:feed_pk>/reactions/create', views.create_reaction, name='create_reaction'),
     # /board/1/reactions/1/delete/
     path('<int:feed_pk>/reactions/<int:reaction_pk>/delete/', views.delete_reaction, name='delete_reaction'),
+
+    # /board/1/like/
+    path('<int:feed_pk>/like/', views.like_feed, name='like_feed'),
 ]
