@@ -14,3 +14,17 @@
 </div>
 {% endif %}
 
+{% if user.is_authenticated %}
+<div style="display: inline-block;">
+  <form action="{% url 'board:like_feed' feed.pk %}" method="POST">
+    {% csrf_token %}
+    
+    {% if is_like %}
+    <button>좋아요 취소</button>
+    {% else %}
+    <button>좋아요</button>
+    {% endif %}  
+  </form>
+</div>
+{% endif %}
+

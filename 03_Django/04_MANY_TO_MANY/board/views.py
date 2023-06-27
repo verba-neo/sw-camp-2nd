@@ -38,11 +38,15 @@ def feed_detail(request, feed_pk):
     feed = get_object_or_404(Feed, pk=feed_pk)
     reactions = feed.reactions.all()
     form = ReactionForm()
+    
+    # 요청 보낸 사용자가 현재 조회중인 feed에 좋아요를 눌렀는지(T/F)
+    is_like = feed.like_users.filter(pk=request.user.pk).exists()
 
     return render(request, 'board/detail.html', {
         'feed': feed,
         'reactions': reactions,
         'form': form,
+        'is_like': is_like,
     })
 
 
@@ -111,6 +115,13 @@ def like_feed(request, feed_pk):
     feed = get_object_or_404(Feed, pk=feed_pk)
     user = request.user
     
-    feed.like_users.add(user)
+    # 기존에 좋아요를 했다면,
+    # if user in feed.like_users.all():
+    if feed.like_users.filter(pk=user.pk).exists():
+        # 취소
+        feed.like_users.remove(user)
+    else:
+        # 추가
+        feed.like_users.add(user)
 
     return redirect('board:feed_detail', feed.pk)
