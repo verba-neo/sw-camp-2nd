@@ -15,8 +15,11 @@
 <ul>
   {% for reaction in reactions %}
   <li>
-    {{ reaction.author.username }} > {{ reaction.content }}
-    
+    <a href="{% url 'accounts:profile' reaction.author.username %}">
+      {{ reaction.author.username }}
+    </a>
+    > {{ reaction.content }}
+
     {% if user == reaction.author %}
     <form 
       action="{% url 'board:delete_reaction' feed.pk reaction.pk %}" 

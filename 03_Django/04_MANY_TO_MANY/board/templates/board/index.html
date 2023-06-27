@@ -7,7 +7,9 @@
 <ul>
   {% for feed in feeds %}
   <li>
-    {{ feed.author.username }} >>
+    <a href="{% url 'accounts:profile' feed.author.username %}">
+      {{ feed.author.username }}
+    </a> >>
     <a href="{% url 'board:feed_detail' feed.pk %}">
       {{ feed.title }}
     </a> ({{ feed.reactions.count }})
