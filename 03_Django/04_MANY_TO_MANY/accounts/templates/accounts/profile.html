@@ -5,15 +5,25 @@
 <h1>{{ profile_user.username }} 의 프로필 </h1>
 
 <div>
-  팔로워 수: 00
+  팔로워 수: {{ profile_user.fans.count }}
 </div>
 <div>
-  팔로잉 수: 00
+  팔로잉 수: {{ profile_user.stars.count }}
 </div>
 
+{% if user.is_authenticated and profile_user != user %}
 <div>
-  <button>팔로우</button>
+  <form action="{% url 'accounts:follow' profile_user.username %}" method="POST">
+    {% csrf_token %}
+    {% if is_following %}
+    <button>언팔로우</button>
+    {% else %}
+    <button>팔로우</button>
+    {% endif %}
+  </form>
 </div>
+{% endif %}
+
 
 <h2>작성글</h2>
 <ul>

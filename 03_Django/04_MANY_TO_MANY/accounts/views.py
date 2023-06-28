@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.decorators.http import require_http_methods, require_safe
+from django.views.decorators.http import require_http_methods, require_safe, require_POST
 
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as auth_login, logout as auth_logout, get_user_model
+from django.contrib.auth.decorators import login_required
 
 from .forms import CustomUserCreationForm
 
@@ -49,7 +50,25 @@ def logout(request):
 @require_safe
 def profile(request, username):
     profile_user = get_object_or_404(User, username=username)
-    
+    is_following = request.user.stars.filter(pk=profile_user.pk).exists()
+
     return render(request, 'accounts/profile.html', {
         'profile_user': profile_user,
+        'is_following': is_following,
     })
+
+
+@require_POST
+@login_required
+def follow(request, username):
+
+    star = get_object_or_404(User, username=username)
+    fan = request.user
+
+    if star != fan:    
+        if fan.stars.filter(pk=star.pk).exists():
+            fan.stars.remove(star)
+        else:
+            fan.stars.add(star)
+    
+    return redirect('accounts:profile', star)

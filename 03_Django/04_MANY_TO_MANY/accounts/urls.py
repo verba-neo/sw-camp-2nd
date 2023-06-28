@@ -14,4 +14,7 @@ urlpatterns = [
     
     # /accounts/neo/
     path('<str:username>/', views.profile, name='profile'),
+    # /accounts/neo/follow/
+    path('<str:username>/follow/', views.follow, name='follow'),
+
 ]
