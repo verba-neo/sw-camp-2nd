@@ -40,6 +40,8 @@ INSTALLED_APPS = [
 
     'django_extensions',
     'django_seed',
+    # pip install django-bootstrap-v5
+    'bootstrap5',
 
     'cinema',
     'hospital',

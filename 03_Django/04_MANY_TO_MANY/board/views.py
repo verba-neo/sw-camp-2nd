@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_safe, require_POST, require_http_methods
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 
 from .models import Feed, Reaction
 from .forms import FeedForm, ReactionForm
@@ -28,8 +29,13 @@ def create_feed(request):
 @require_safe
 def feed_index(request):
     feeds = Feed.objects.all()
+    paginator = Paginator(feeds, 10)  # feeds 를 1페이지에 10개씩 묶음
+    page_number = request.GET.get("page")
+
+    page_obj = paginator.get_page(page_number)
+
     return render(request, 'board/index.html', {
-        'feeds': feeds,
+        'page_obj': page_obj,
     })
 
 

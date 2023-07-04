@@ -1,4 +1,6 @@
 <!-- detail_ui.html -->
+
+<!-- 수정 버튼 -->
 {% if user == feed.author %}
 <div style="display: inline-block;">
   <a href="{% url 'board:update_feed' feed.pk %}">
@@ -6,6 +8,7 @@
   </a>
 </div>
 
+<!-- 삭제 버튼 -->
 <div style="display: inline-block;">
   <form action="{% url 'board:delete_feed' feed.pk %}" method="POST">
     {% csrf_token %}
@@ -14,15 +17,20 @@
 </div>
 {% endif %}
 
+<!-- 좋아요 -->
 {% if user.is_authenticated %}
 <div style="display: inline-block;">
   <form action="{% url 'board:like_feed' feed.pk %}" method="POST">
     {% csrf_token %}
     
     {% if is_like %}
-    <button>좋아요 취소</button>
+    <button class="btn">
+      <i class="bi bi-heart-fill" style="color: red"></i>
+    </button>
     {% else %}
-    <button>좋아요</button>
+    <button class="btn">
+      <i class="bi bi-heart"></i>
+    </button>
     {% endif %}  
   </form>
 </div>
